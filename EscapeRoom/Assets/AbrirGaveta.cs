@@ -1,56 +1,27 @@
 using UnityEngine;
 
-public class Gaveta : MonoBehaviour
+public class AbrirGaveta : MonoBehaviour
 {
-    public Vector3 direcaoAbertura = new Vector3(0, 0, 0.4f);
-    public float velocidade = 2f;
-
-    private Vector3 posicaoFechada;
-    private Vector3 posicaoAberta;
-    private bool aberta = false;
-    private bool jogadorPerto = false;
-    private bool aAnimar = false;
-
-    void Start()
-    {
-        posicaoFechada = transform.localPosition;
-        posicaoAberta = posicaoFechada + direcaoAbertura;
-        Debug.Log("Gaveta iniciada: " + gameObject.name);
-    }
+    public float distanciaMaxima = 2.5f;
 
     void Update()
     {
-        if (jogadorPerto && Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("E pressionado — a abrir/fechar gaveta");
-            aberta = !aberta;
-            aAnimar = true;
-        }
+            Ray ray = new Ray(transform.position, transform.forward);
+            RaycastHit hit;
 
-        if (aAnimar)
-        {
-            Vector3 destino = aberta ? posicaoAberta : posicaoFechada;
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, destino, velocidade * Time.deltaTime);
-
-            if (Vector3.Distance(transform.localPosition, destino) < 0.001f)
+            if (Physics.Raycast(ray, out hit, distanciaMaxima))
             {
-                transform.localPosition = destino;
-                aAnimar = false;
+                Debug.Log("Raycast acertou: " + hit.collider.gameObject.name);
+
+                if (hit.collider.CompareTag("Gaveta"))
+                {
+                    Gaveta gaveta = hit.collider.GetComponent<Gaveta>();
+                    if (gaveta != null)
+                        gaveta.Interagir();
+                }
             }
-        }
-    }
-
-   void OnTriggerEnter(Collider other)
-{
-    Debug.Log("QUALQUER COISA entrou: " + other.gameObject.name);
-}
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            jogadorPerto = false;
-            Debug.Log("Jogador saiu da gaveta");
         }
     }
 }
