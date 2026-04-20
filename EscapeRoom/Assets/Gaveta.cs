@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Gaveta : MonoBehaviour
+public class Gaveta : MonoBehaviour , IInteragivel
 {
     public Vector3 direcaoAbertura = new Vector3(0, 0, 0.4f);
     public float velocidade = 2f;
@@ -38,5 +38,10 @@ public class Gaveta : MonoBehaviour
         aberta = !aberta;
         aAnimar = true;
         Debug.Log("Gaveta " + (aberta ? "aberta" : "fechada"));
+    }
+
+     public string MensagemInteracao()
+    {
+        return "Prima E para " + (aberta ? "fechar" : "abrir") + " a gaveta";
     }
 }

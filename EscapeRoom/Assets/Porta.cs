@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Porta : MonoBehaviour
+public class Porta : MonoBehaviour , IInteragivel
 {
 	public float anguloAbertura = 90f;
 	public float velocidade = 130f;
@@ -11,12 +11,12 @@ public class Porta : MonoBehaviour
 	
 	
 	
-    void Start()
-    {
-    	rotacaoFechada = transform.rotation;
-    	rotacaoAberta = rotacaoFechada * Quaternion.Euler(0, anguloAbertura, 0);
-        
-    }
+void Awake()
+{
+    rotacaoFechada = transform.rotation;
+    rotacaoAberta = rotacaoFechada * Quaternion.Euler(0, anguloAbertura, 0);
+    Debug.Log("PORTA AWAKE");
+}
 
      void Update()
     {
@@ -32,4 +32,10 @@ public class Porta : MonoBehaviour
     {
         aberta = !aberta;
     }
+
+     public string MensagemInteracao()
+    {
+        return "Prima E para " + (aberta ? "fechar" : "abrir") + " a porta";
+    }
+    
 }

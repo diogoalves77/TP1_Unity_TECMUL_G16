@@ -19,6 +19,7 @@ public class GameINFO : MonoBehaviour
     public TMP_Text textTimer;
     public TMP_Text textPuzzles;
     public GameObject painelGameOver;
+    public GameObject painelVitoria;
     
     [Header("Player")]
     public FirstPersonController playerController;
@@ -27,6 +28,7 @@ public class GameINFO : MonoBehaviour
     {
         tempoRestante = tempoTotal;
         painelGameOver.SetActive(false);
+        painelVitoria.SetActive(false);
         AtualizarPuzzles();
     }
 
@@ -54,7 +56,7 @@ public class GameINFO : MonoBehaviour
 
     void AtualizarPuzzles()
     {
-        textPuzzles.text = puzzlesCompletos + "/" + totalPuzzles + " Puzzles" ;
+        textPuzzles.text = puzzlesCompletos + "/" + totalPuzzles + " Keys Found";
     }
 
     public void CompletarPuzzle()
@@ -85,11 +87,16 @@ public class GameINFO : MonoBehaviour
    	SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    void VitoriaJogo()
+    public void VitoriaJogo()
     {
+        
         jogoAtivo = false;
-        Debug.Log("Vitória!");
-        // podes criar um painel de vitória mais tarde
+        Time.timeScale = 0f;
+        painelVitoria.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+       
+        FindFirstObjectByType<FirstPersonController>().enabled = false;
     }
 
    public void VoltarMenu()
