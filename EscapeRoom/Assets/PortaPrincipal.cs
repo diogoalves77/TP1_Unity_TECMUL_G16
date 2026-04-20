@@ -1,16 +1,24 @@
 using UnityEngine;
 
+
 public class PortaPrincipal : MonoBehaviour , IInteragivel
 {
 
     public string MensagemInteracao()
-    {
-        return "Prima E para Sair";
+    {       
+       GameINFO gameInfo = FindFirstObjectByType<GameINFO>();
+        if (gameInfo.puzzlesCompletos < gameInfo.totalPuzzles)
+            return "Encontra todas as chaves para abrires a porta!";
+        else
+            return "Prima E para sair";
+        
     }
 
    
     public void Interagir()
     {
-        FindFirstObjectByType<GameINFO>().VitoriaJogo();
+       GameINFO gameInfo = FindFirstObjectByType<GameINFO>();
+        if (gameInfo.puzzlesCompletos >= gameInfo.totalPuzzles)
+            gameInfo.VitoriaJogo();
     }
 }
