@@ -54,7 +54,7 @@ public class GameINFO : MonoBehaviour
 
     void AtualizarPuzzles()
     {
-        textPuzzles.text = puzzlesCompletos + "/" + totalPuzzles;
+        textPuzzles.text = puzzlesCompletos + "/" + totalPuzzles + " Puzzles" ;
     }
 
     public void CompletarPuzzle()
