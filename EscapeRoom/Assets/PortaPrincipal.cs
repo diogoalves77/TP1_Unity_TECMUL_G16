@@ -8,7 +8,7 @@ public class PortaPrincipal : MonoBehaviour , IInteragivel
     {       
        GameINFO gameInfo = FindFirstObjectByType<GameINFO>();
         if (gameInfo.puzzlesCompletos < gameInfo.totalPuzzles)
-            return "Encontra todas as chaves para abrires a porta!";
+            return "Encontra todos os troféus para abrires a porta!";
         else
             return "Prima E para sair";
         

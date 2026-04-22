@@ -62,7 +62,7 @@ public class GameINFO : MonoBehaviour
 
     void AtualizarPuzzles()
     {
-        textPuzzles.text = puzzlesCompletos + "/" + totalPuzzles + " Keys Found";
+        textPuzzles.text = puzzlesCompletos + "/" + totalPuzzles + " Troféus Encontrados";
     }
 
     public void CompletarPuzzle()
