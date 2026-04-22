@@ -10,10 +10,11 @@ public class GameINFO : MonoBehaviour
     public float tempoTotal = 900f; // 15 minutos em segundos
     private float tempoRestante;
     private bool jogoAtivo = true;
+    
 
     [Header("Puzzles")]
     public int totalPuzzles = 5;
-    private int puzzlesCompletos = 0;
+    public int puzzlesCompletos = 0;
 
     [Header("UI")]
     public TMP_Text textTimer;
@@ -23,6 +24,10 @@ public class GameINFO : MonoBehaviour
     
     [Header("Player")]
     public FirstPersonController playerController;
+
+    [Header("Audio")]
+    public AudioSource musicaFundo;
+    public AudioClip musicaVitoria;
     
     void Start()
     {
@@ -30,6 +35,7 @@ public class GameINFO : MonoBehaviour
         painelGameOver.SetActive(false);
         painelVitoria.SetActive(false);
         AtualizarPuzzles();
+    
     }
 
     void Update()
@@ -97,6 +103,8 @@ public class GameINFO : MonoBehaviour
         Cursor.visible = true;
        
         FindFirstObjectByType<FirstPersonController>().enabled = false;
+        musicaFundo.clip = musicaVitoria;
+        musicaFundo.Play(); 
     }
 
    public void VoltarMenu()

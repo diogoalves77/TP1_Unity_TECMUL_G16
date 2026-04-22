@@ -4,11 +4,13 @@ public class Gaveta : MonoBehaviour , IInteragivel
 {
     public Vector3 direcaoAbertura = new Vector3(0, 0, 0.4f);
     public float velocidade = 2f;
+    public AudioClip somGaveta;
 
     private Vector3 posicaoFechada;
     private Vector3 posicaoAberta;
     private bool aberta = false;
     private bool aAnimar = false;
+  
 
     void Start()
     {
@@ -38,6 +40,8 @@ public class Gaveta : MonoBehaviour , IInteragivel
         aberta = !aberta;
         aAnimar = true;
         Debug.Log("Gaveta " + (aberta ? "aberta" : "fechada"));
+        AudioSource.PlayClipAtPoint(somGaveta, transform.position);
+        
     }
 
      public string MensagemInteracao()
