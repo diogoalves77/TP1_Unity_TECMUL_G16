@@ -59,6 +59,30 @@ Assets multimédia:
                               -Usado para a porta principal
                               -Tamanho: 735 KB
 
-                    
+                    -Sons:
+                              -game_music.wav:
+                              
+                                        -Musica de fundo do jogo
+                                        
+                                        -Tamanho: 30,8 MB
+                                        
+                              -gamewin_music.wav:
+                              
+                                        -Música de vitória do jogo
+                                        
+                                        -Tamanho: 253 KB
+                                        
+                              -gaveta_som.wav:
+                              
+                                        -Som para abrir e fechar gavetas
+                                        
+                                        -Tamanho: 193 KB
+                                        
+                              -homescreen_music.wav
+                              
+                                        -Música para ecrã principal
+                                        
+                                        -Tamanho: 4,03 MB
 
+          
 
