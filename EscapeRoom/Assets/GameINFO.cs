@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-
+using System.Collections;
 
 public class GameINFO : MonoBehaviour
 {
@@ -28,6 +28,9 @@ public class GameINFO : MonoBehaviour
     [Header("Audio")]
     public AudioSource musicaFundo;
     public AudioClip musicaVitoria;
+
+    [Header("Dica")]
+    public TMP_Text textoDica;
     
     void Start()
     {
@@ -72,9 +75,16 @@ public class GameINFO : MonoBehaviour
             puzzlesCompletos++;
             AtualizarPuzzles();
 
-            if (puzzlesCompletos == totalPuzzles)
-                VitoriaJogo();
+        if (puzzlesCompletos == totalPuzzles)
+            StartCoroutine(MostrarDica());
         }
+    }
+
+    IEnumerator MostrarDica()
+    {
+        textoDica.text = "Boa! Já consegues abrir a porta principal!";
+        yield return new WaitForSeconds(3f);
+        textoDica.text = "";
     }
 
    void GameOver()
